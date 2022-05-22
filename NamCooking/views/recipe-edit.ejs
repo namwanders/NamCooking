@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Edit Recipe</title>
+        <link rel="stylesheet" href="/css/style.css">
+    </head>
+    <body>
+        <div class="container">
+            <div class="recipe-update-title">
+                <h1>Edit Recipe</h1>
+            </div>
+            <div class="recipe-update-wrapper">
+                <p class="recipe-update-label">name</p>
+                <form action="/recipe/update/<%= recipe.id %>" method="post">
+                    <input name="recipeName" type="text" value="<%= recipe.name %>">
+                    <p class="recipe-update-label">url</p>
+                    <input name="recipeUrl" type="text" value=" <%= recipe.url %>">
+                    <p class="recipe-update-label">user name</p>
+                    <select name="userName" class="recipe-user-option">
+                        <option value="N">N</option>
+                        <option value="J">J</option>
+                    </select>
+                    <input type="submit" value="UPDATE">
+                </form>
+            </div>
+        </div>
+    </body>
+</html>

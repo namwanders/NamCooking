@@ -1,0 +1,19 @@
+<header>
+    <div class="header-wrapper">
+        <div class="header-side">
+            <p class="header-left">Hey, <%= locals.firstName %>! How's your twenties?</p>
+            <ul class="header-right">
+                <% if (locals.isLoggedIn) { %>
+                    <li><a class="header-btn profile-edit" href="/profile/edit/<%= locals.userId %>">Edit a profile</a></li>
+                    <li><a class="header-btn logout" href="/logout">Log out</a></li>
+                <% } else { %>
+                    <li><a class="header-btn signup" href="/signup">Sign up</a></li>
+                    <li><a class="header-btn login" href="/login">Log in</a></li>
+                <% } %>
+            </ul>
+        </div>
+        <a href="/">
+            <h1 class="header-title">Nam Wanders</h1>
+        </a>
+    </div>
+</header>

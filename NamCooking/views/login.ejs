@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Login</title>
+        <link rel="stylesheet" href="/css/style.css">
+        <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    </head>
+    <body>
+        <div class="header">
+            <div class="container">
+                <%- include('header.ejs') %>
+            </div>
+        </div>
+        <div class="login-page">
+            <div class="login-image">
+                <img src="/images/namwanders.login.icon.png">
+            </div>
+            <div class="login-wrapper">
+                <div class="login-avatar">
+                    <img src="/images/namwanders.login.avatar2.png">
+                </div>
+                <form action="/login" method="post" class="login-form">
+                    <a href="/login"><h2 class="login-title">How you doin?</h2></a>
+                    <div class="login-div one">
+                        <div class="login-icon">
+                            <i class="fa fa-envelope"></i>
+                        </div>
+                        <div>
+                            <h5>Email</h5>
+                            <input type="email" class="login-input" name="email" required value="<%= locals.loginEmailRemain %>" autofocus>
+                        </div>
+                        <div class="login-check">
+                            <i class="fas fa-check"></i>
+                        </div>
+                    </div>
+                    <div class="login-div two">
+                        <div class="login-icon">
+                            <i class="fa fa-lock"></i>
+                        </div>
+                        <div>
+                            <h5>Password</h5>
+                            <input type="password" name="password" class="login-input" id="loginTextPassword" required value="<%= locals.loginPasswordRemain %>">
+                        </div>
+                        <div class="login-password-eye">
+                            <span class="fas fa-eye" id="loginButtonEye" onclick="loginPushHideButton()"></span>
+                        </div>
+                        <div class="login-check">
+                            <i class="fas fa-check"></i>
+                        </div>
+                    </div>
+                    <a href="#" class="forgot-password">Forgot Password?</a>
+                    <input type="submit" value="Login" class="login-btn">
+                    <p class="not-a-member">New here? <a href="/signup">Signup now</a></p>
+                    <a class="top-from-login" href="/">Go back to top</a>
+                </form>
+            </div>
+        </div>
+        <script language="javascript">
+            function loginPushHideButton() {
+                var loginTxtPass = document.getElementById("loginTextPassword");
+                var loginBtnEye = document.getElementById("loginButtonEye");
+                if (loginTxtPass.type === "text") {
+                    loginTxtPass.type = "password";
+                    loginBtnEye.className = "fa fa-eye";
+                } else {
+                    loginTxtPass.type = "text";
+                    loginBtnEye.className = "fa fa-eye-slash";
+                }
+            }
+            const loginInputs=document.querySelectorAll('.login-input');
+            function loginFocusFunc(){
+                let loginParent=this.parentNode.parentNode;
+                loginParent.classList.add('login-focus');
+            }
+            function loginBlurFunc(){
+                let loginParent=this.parentNode.parentNode;
+                if (this.value == ""){
+                    loginParent.classList.remove('login-focus');
+                }
+            }
+            loginInputs.forEach(loginInput=> {
+            loginInput.addEventListener('focus', loginFocusFunc);
+            loginInput.addEventListener('blur', loginBlurFunc);
+        });
+        </script>
+        <script src="/jQuery/script.js"></script>
+    </body>
+</html>

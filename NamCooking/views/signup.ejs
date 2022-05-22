@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>signup</title>
+        <link rel="stylesheet" href="/css/style.css">
+        <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    </head>
+    <body>
+        <div class="header">
+            <div class="container">
+                <%- include('header.ejs') %>
+            </div>
+        </div>
+        <div class="signup-page">
+            <div class="signup-wrapper">
+                <div class="signup-avatar">
+                    <img src="/images/namwanders.travel.girl2.png">
+                </div>  
+                <form action="/signup" class="signup-form" method="post">
+                    <a href="/signup"><h2 class="signup-title">Welcome</h2></a>
+                    <div class="signup-container one">
+                        <div class="signup-div one">
+                            <div class="signup-icon">
+                                <i class="fa fa-envelope"></i>
+                            </div>
+                            <div>
+                                <h5>Email</h5>
+                                <input autofocus class="signup-input one" name="email" required type="email" value="<%= locals.email %>">
+                            </div>
+                            <div class="signup-check">
+                                <i class="fas fa-check"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="signup-container two">
+                        <div class="signup-div two">
+                            <div class="signup-icon">
+                                <i class="fa fa-lock"></i>
+                            </div>
+                            <div>
+                                <h5>Password</h5>
+                                <input class="signup-input two" id="SignupTextPassword" name="password" required type="password" value="<%= locals.password %>">
+                            </div>
+                            <div class="signup-password-eye">
+                                <span class="fas fa-eye" id="signupButtonEye" onclick="signupPushHideButton()"></span>
+                            </div>
+                            <div class="signup-check">
+                                <i class="fas fa-check"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="signup-container three">
+                        <div class="signup-div three">
+                            <div class="signup-icon">
+                                <i class="fa fa-lock"></i>
+                            </div>
+                            <div>
+                                <h5>Confirmed Password</h5>
+                                <input class="signup-input three" id="Signup2TextPassword" name="passwordCheck" required type="password" value="<%= locals.passwordCheck %>">
+                            </div>
+                            <div class="signup-password-eye">
+                                <span class="fas fa-eye" id="signup2ButtonEye" onclick="signup2PushHideButton()"></span>
+                            </div>
+                            <div class="signup-check">
+                                <i class="fas fa-check"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="signup-container four">
+                        <div class="signup-div four">
+                            <div class="signup-icon">
+                                <i class="fa fa-user-check"></i>
+                            </div>
+                            <div>
+                                <h5>Invitation Code</h5>
+                                <input class="signup-input four" id="Signup3TextPassword" name="invitationCode" required type="password" value="<%= locals.invitationCode %>">
+                            </div>
+                            <div class="signup-password-eye">
+                                <span class="fas fa-eye" id="signup3ButtonEye" onclick="signup3PushHideButton()"></span>
+                            </div>
+                            <div class="signup-check">
+                                <i class="fas fa-check"></i>
+                            </div>
+                        </div>
+                        <div class="signup-mistake">
+                            <p>your invitatin code is invalid</p>
+                        </div>
+                    </div>
+                    <input class="signup-btn" type="submit" value="Signup">
+                    <p class="already-member">Already have an account? <a href="/login">Login now</a></p>
+                    <a class="top-from-signup" href="/">Go back to top</a>
+                </form>   
+            </div>
+            <div class="signup-image">
+                <img src="/images/namwanders.login.icon.png">
+            </div>
+        </div>                
+        <script language="javascript">
+            function signupPushHideButton() {
+                var signupTxtPass = document.getElementById("SignupTextPassword");
+                var signupBtnEye = document.getElementById("signupButtonEye");
+                if (signupTxtPass.type === "text") {
+                    signupTxtPass.type = "password";
+                    signupBtnEye.className = "fa fa-eye";
+                } else {
+                    signupTxtPass.type = "text";
+                    signupBtnEye.className = "fa fa-eye-slash";
+                }
+            }
+            function signup2PushHideButton() {
+                var signup2TxtPass = document.getElementById("Signup2TextPassword");
+                var signup2BtnEye = document.getElementById("signup2ButtonEye");
+                if (signup2TxtPass.type === "text") {
+                    signup2TxtPass.type = "password";
+                    signup2BtnEye.className = "fa fa-eye";
+                } else {
+                    signup2TxtPass.type = "text";
+                    signup2BtnEye.className = "fa fa-eye-slash";
+                }
+            }
+            function signup3PushHideButton() {
+                var signup3TxtPass = document.getElementById("Signup3TextPassword");
+                var signup3BtnEye = document.getElementById("signup3ButtonEye");
+                if (signup3TxtPass.type === "text") {
+                    signup3TxtPass.type = "password";
+                    signup3BtnEye.className = "fa fa-eye";
+                } else {
+                    signup3TxtPass.type = "text";
+                    signup3BtnEye.className = "fa fa-eye-slash";
+                }
+            }
+            const signupInputs=document.querySelectorAll('.signup-input');
+                function signupFocusFunc(){
+                    let signupParent=this.parentNode.parentNode;
+                    signupParent.classList.add('signup-focus');
+                }
+                function signupBlurFunc(){
+                    let signupParent=this.parentNode.parentNode;
+                    if (this.value == ""){
+                        signupParent.classList.remove('signup-focus');
+                    }
+                }
+                signupInputs.forEach(signupInput=> {
+                signupInput.addEventListener('focus', signupFocusFunc);
+                signupInput.addEventListener('blur', signupBlurFunc);
+            });
+        </script>
+        <script src="/jQuery/script.js"></script>
+    </body>
+</html>

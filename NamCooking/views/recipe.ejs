@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Nam Recipe</title>
+        <link rel="stylesheet" href="/css/style.css">
+    </head>
+    <body>
+        <% if (locals.isLoggedIn) { %>
+            <div class="container">
+                <div class="container-header">
+                    <h1>Recipes</h1>
+                    <a href="/recipe/add" class="recipe-add">+ Add recipe</a>
+                </div>
+                <div class="table-wrapper">
+                    <div class="table-head">
+                        <span class="user-column">User</span>
+                        <span class="name-column">Food Name</span>
+                    </div>
+                    <ul class="table-body">
+                        <% recipes.forEach((recipe)=> { %>
+                            <li>
+                                <div class="recipe-data">
+                                    <span class="user-column"><%= recipe.user %></span>
+                                    <span class="name-column"><%= recipe.name %></span>
+                                </div>
+                                <div class="recipe-function">
+                                    <a class="recipe-column-btn" href="<%= recipe.url %>">Check</a>
+                                    <a class="recipe-column-btn" href="/recipe/edit/<%= recipe.id %>">Edit</a>
+                                    <form action="/recipe/delete/<%= recipe.id %>" method="post">
+                                        <input class="recipe-column-btn" type="submit" value="Delete" onclick="confirm('Are you sure to delete?')">
+                                    </form>
+                                </div>
+                            </li>
+                        <%  }); %>
+                    </ul>
+                    <a href="/recipe/add" class="add-column">+ Add a new recipe</a>
+                    <a href='/' class="return-column">Go back to top</a>
+                </div>
+            </div>    
+        <% } else { %>
+            <%- include ('login.ejs') %>
+        <% } %>
+    </body>
+</html>

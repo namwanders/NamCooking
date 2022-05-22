@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>NamCooking</title>
+        <link rel="stylesheet" href="/css/style.css">
+    </head>
+    <body>
+        <%- include('header.ejs') %>
+        <div class="home-options">
+            <a class="editting-option btn-option" 
+            <% if (locals.isLoggedIn) { %>
+                href="/recipe"
+            <% } else { %>
+                href="/login"
+            <% } %>
+            >View Nam Recipe</a>
+        </div>
+    </body>
+</html>
